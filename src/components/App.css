@@ -1,0 +1,9 @@
+span{
+    background:blue;
+    color: cornsilk;
+}
+
+p{
+    background: var(--background);
+    color:var(--on-sec-color);
+}

@@ -11,3 +11,25 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+:root{
+  --prim-color: #32c373;
+  --prim-color2: #74e49f;
+  --on-prim-color: #EDF5e1;
+  --sec-color2:#05386b;
+  --sec-color: #379683;
+  --on-sec-color: #EDF5e1;
+  --background: #05386B;
+  --alert: rgb(172, 78, 78);
+}
+
+/* [color-theme=dark]{
+  --prim-color: #5cdb95,
+  --prim-color2: #8ee4af,
+  --on-prim-color: #EDF5e1,
+  --sec-color2:#05386b,
+  --sec-color: #379683,
+  --on-sec-color:EDF5e1,
+  --background: #05386B;
+} */
+
