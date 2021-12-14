@@ -13,13 +13,13 @@ code {
 }
 
 :root{
-  --prim-color: #32c373;
-  --prim-color2: #74e49f;
-  --on-prim-color: #EDF5e1;
-  --sec-color2:#05386b;
-  --sec-color: #379683;
-  --on-sec-color: #EDF5e1;
-  --background: #05386B;
+  --surface:rgb(25, 69, 107);
+  --surface-var: rgb(10, 39, 65);
+  --on-surface: rgb(231, 217, 234);
+  --prim:rgb(22, 199, 154);
+  --on-prim:rgb(25, 69, 107);
+  --sec:rgb(17, 105, 142);
+  --on-sec:rgb(22, 199, 154);
   --alert: rgb(172, 78, 78);
 }
 
@@ -33,3 +33,13 @@ code {
   --background: #05386B;
 } */
 
+#root{
+  background-color:var(--surface);
+  height:100%;
+}
+
+html,body{
+  height: 100%;
+  margin:0;
+  padding:0;
+}
