@@ -4,7 +4,8 @@ import './Cred.css';
 import './credanim.css'
 import GoogleLogin from 'react-google-login';
 import GoogleButton from 'react-google-button';
-
+import { useAuth } from '../../authcontext';
+import { useNavigate } from 'react-router';
 
 const Cred = (props) => {
 
@@ -12,6 +13,9 @@ const Cred = (props) => {
     const [username, setusername] = useState('');
     const [password, setpassword] = useState('');
 
+    const nav = useNavigate();
+    const user = useAuth;
+    
     const [showModal, setshowModal] = useState(false);
     const [modalChildren, setmodalchildren] = useState(<p>Verify email by clicking on mail sent and then login</p>);
     const log_sign = {
@@ -28,6 +32,13 @@ const Cred = (props) => {
             linkText: "Don't have an account? Sign Up"
         }
     }
+    
+    const onLogin = (obj) => {
+        user.changeUserInfo(obj);
+        localStorage.setItem('isAuth',true);
+        nav('/');
+    }
+
     const action = () => {
         if (password === '' || username === '') {
             setmodalchildren(<p>Enter all fields</p>);
@@ -49,26 +60,26 @@ const Cred = (props) => {
                     email, password, username
                 })
             })
-                .then(res => res.json())
-                .then((data) => {
-                    if (data.code === 200) {
-                        setmodalchildren(<p>Verify email by clicking on mail sent and then login</p>);
-                    }
-                    else {
-                        setmodalchildren(<p>{data.message}</p>);
-                    }
-                    setshowModal(true);
-                    setTimeout(() => {
-                        props.setsignupPanel(false);
-                        setshowModal(false);
-                        setpassword(e => '');
-                        setusername(e => ''); setemail(e => '');
-                        [...document.getElementsByClassName('cred-inp')]
-                            .forEach(element => {
-                                element.value = '';
-                            });
-                    }, 2000);
-                })
+            .then(res => res.json())
+            .then((data) => {
+                if (data.code === 200) {
+                    setmodalchildren(<p>Verify email by clicking on mail sent and then login</p>);
+                }
+                else {
+                    setmodalchildren(<p>{data.message}</p>);
+                }
+                setshowModal(true);
+                setTimeout(() => {
+                    props.setsignupPanel(false);
+                    setshowModal(false);
+                    setpassword(e => '');
+                    setusername(e => ''); setemail(e => '');
+                    [...document.getElementsByClassName('cred-inp')]
+                        .forEach(element => {
+                            element.value = '';
+                        });
+                }, 2000);
+            })
         }
         else {
             fetch('/login', {
@@ -78,23 +89,23 @@ const Cred = (props) => {
                     password, username
                 })
             })
-                .then(res => res.json())
-                .then((data) => {
-                    if (data.code === 200) {
-                        console.log("logged in");
-                    }
-                    else {
-                        console.log("login fail try again");
-                    }
-                    [...document.getElementsByClassName('cred-inp')]
-                        .forEach(element => {
-                            element.value = '';
-                        });
-                });
+            .then(res => res.json())
+            .then((data) => {
+                if (data.code === 200) {
+                    console.log("logged in");
+                    onLogin(data);
+                }
+                else {
+                    console.log("login fail try again");
+                }
+                [...document.getElementsByClassName('cred-inp')]
+                    .forEach(element => {
+                        element.value = '';
+                    });
+            });
         }
     }
 
-    
     const animateCSS = (element, animation, prefix = 'animate__') => {
         new Promise((resolve, reject) => {
             const animationName = `${prefix}${animation}`;
@@ -131,8 +142,16 @@ const Cred = (props) => {
         .then(res=>res.json())
         .then(data=>{
             console.log(data.message);
+            if(data.code===200){
+                let auth2 = window.gapi.auth2.getAuthInstance();
+                auth2.signOut().then(function () {
+                    console.debug('User signed out.');
+                });
+                onLogin(data);
+            }
         })
     }
+
     const responseFailureGoogle = (google_user) => {
         // console.log(google_user);
         setmodalchildren(<p>Google sign in didnt work, please try again</p>);
@@ -149,31 +168,37 @@ const Cred = (props) => {
         }, 2000);
     }
 
-    return (<>
-        <div className="login-container">
-            <h3 className="title">{log_sign[props.signupPanel].title}</h3>
-            <Modal show={showModal} children={modalChildren} />
-            {log_sign[props.signupPanel].emailInput}
-            <input className="username cred-inp" onChange={(e) => { setusername(e.target.value) }} type="text" placeholder="Username" />
-            <input className="password cred-inp" onChange={(e) => { setpassword(e.target.value) }} type="password" placeholder="Password" />
-            <button className="action-button" onClick={action}>{log_sign[props.signupPanel].buttonText}</button>
-            <a
-                onClick={(e) => {
-                    animateCSS('.login-container', 'flip')
-                }}
-                href
-            > <u> {log_sign[props.signupPanel].linkText} </u> </a>
-            {!props.signupPanel && (<><p className="or"> - OR -</p><GoogleLogin
-                clientId="159965503460-fjbqtf8g2ojitraemgt9dfddsohshm6h.apps.googleusercontent.com"
-                onSuccess={responseSuccessGoogle}
-                onFailure={responseFailureGoogle}
-                cookiePolicy={'single_host_origin'}
-                render={renderProps => (
-                    <GoogleButton type='dark' onClick={renderProps.onClick} disabled={renderProps.disabled}>Sign in with Google</GoogleButton>
-                )}
-                className="google-button"
-            /></>)}
-        </div></>
+    return (
+        <div className="cred-container">
+            <div className="cred-img-container" >
+                <img className="cred-img" src="https://static-musique.qub.ca/images/covers/ya/47/q4nuuxxur47ya_max.jpg" alt="" />
+            </div>
+            <div className="login-container">
+                <h3 className="title">{log_sign[props.signupPanel].title}</h3>
+                <Modal show={showModal} children={modalChildren} />
+                {log_sign[props.signupPanel].emailInput}
+                <input className="username cred-inp" onChange={(e) => { setusername(e.target.value) }} type="text" placeholder="Username" />
+                <input className="password cred-inp" onChange={(e) => { setpassword(e.target.value) }} type="password" placeholder="Password" />
+                <button className="action-button" onClick={action}>{log_sign[props.signupPanel].buttonText}</button>
+                <div
+                    onClick={(e) => {
+                        animateCSS('.login-container', 'flip')
+                    }}
+                    href="/#"
+                    className="cred-link"
+                    > <u> {log_sign[props.signupPanel].linkText} </u> </div>
+                {!props.signupPanel && (<><p className="or"> - OR -</p><GoogleLogin
+                    clientId="159965503460-fjbqtf8g2ojitraemgt9dfddsohshm6h.apps.googleusercontent.com"
+                    onSuccess={responseSuccessGoogle}
+                    onFailure={responseFailureGoogle}
+                    cookiePolicy={'single_host_origin'}
+                    render={renderProps => (
+                        <GoogleButton type='dark' onClick={renderProps.onClick} disabled={renderProps.disabled}>Sign in with Google</GoogleButton>
+                        )}
+                        className="google-button"
+                        /></>)}
+            </div>
+        </div>
     )
 }
 

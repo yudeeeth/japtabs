@@ -1,6 +1,15 @@
 .app-container{
     display: flex;
-    height: 100%;
-    align-items: center;
-    justify-content: center;
+    box-sizing: border-box;
+    flex-direction: column;
+    height: max(100%,fit-content);
+    background: var(--surface);
+    align-items: stretch;
+    padding-top: 5rem;
+    justify-items: stretch;
+}
+
+.app-container>*{
+    flex-grow: 10;
+    box-sizing: border-box;
 }
