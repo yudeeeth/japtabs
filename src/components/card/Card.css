@@ -1,0 +1,39 @@
+.card-container{
+    width:15em;
+    height:15em;
+    perspective: 1000px;
+}
+
+.card-inner{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.4s;
+    transform-style: preserve-3d;
+}
+
+.card-container:hover .card-inner{
+    transform: rotateY(180deg);
+}
+
+.card-front,.card-back{
+    position: absolute;
+    border-radius: 1em;
+    background: var(--surface);
+    border: solid 2px var(--prim);
+    box-shadow: inset 0 0 0.5em 0.25em var(--prim);
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden; /* Safari */
+    backface-visibility: hidden;
+}
+
+.card-front{
+    color:var(--on-surface);
+}
+
+.card-back{
+    color:var(--on-surface);
+    transform: rotateY(180deg);
+}
