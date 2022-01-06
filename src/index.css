@@ -13,10 +13,11 @@ code {
 }
 
 :root{
-  --surface:rgb(25, 69, 107);
-  --surface-var: rgb(10, 39, 65);
+  --surface:rgb(11, 59, 102);
+  --card: rgb(10, 39, 65);
+  --surface-var:rgb(7, 34, 58);
   --on-surface: rgb(231, 217, 234);
-  --prim:rgb(22, 199, 154);
+  --prim:rgb(5, 214, 162);
   --on-prim:rgb(25, 69, 107);
   --sec:rgb(17, 105, 142);
   --on-sec:rgb(22, 199, 154);

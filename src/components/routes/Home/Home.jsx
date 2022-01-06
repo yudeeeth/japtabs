@@ -2,13 +2,14 @@ import React from 'react';
 import './Home.css';
 import {useAuth} from "../../../authcontext";
 
+import Card from '../../card/card';
 const Home = () => {
-    const user = useAuth;
+
     return (
         <div className="home-container">
-            {JSON.stringify(user.userInfo)}
+            <Card data={{type:"kanji"}}/>
         </div>
     )
 }
 
-export default Home
+export default Home;

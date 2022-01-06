@@ -2,6 +2,8 @@
     width:15em;
     height:15em;
     perspective: 1000px;
+    margin:auto;
+    
 }
 
 .card-inner{
@@ -11,6 +13,7 @@
     text-align: center;
     transition: transform 0.4s;
     transform-style: preserve-3d;
+    
 }
 
 .card-container:hover .card-inner{
@@ -20,13 +23,16 @@
 .card-front,.card-back{
     position: absolute;
     border-radius: 1em;
-    background: var(--surface);
+    background:var(--card);
     border: solid 2px var(--prim);
-    box-shadow: inset 0 0 0.5em 0.25em var(--prim);
+    /* box-shadow: inset 0 0 0.5em 0.25em var(--prim); */
     width: 100%;
     height: 100%;
     -webkit-backface-visibility: hidden; /* Safari */
     backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .card-front{

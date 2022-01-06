@@ -168,11 +168,16 @@ const Cred = (props) => {
         }, 2000);
     }
 
+    const inputForm = () => {
+        return (
+        <div className="cred-img-container" >
+                <img className="cred-img" src="https://static-musique.qub.ca/images/covers/ya/47/q4nuuxxur47ya_max.jpg" alt="" />
+            </div> );
+    }
+
     return (
         <div className="cred-container">
-            <div className="cred-img-container" >
-                <img className="cred-img" src="https://static-musique.qub.ca/images/covers/ya/47/q4nuuxxur47ya_max.jpg" alt="" />
-            </div>
+            {inputForm()}
             <div className="login-container">
                 <h3 className="title">{log_sign[props.signupPanel].title}</h3>
                 <Modal show={showModal} children={modalChildren} />

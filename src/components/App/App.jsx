@@ -27,7 +27,10 @@ function App() {
         <div className="app-container">
             <Topbar />
             <Routes>
-                <Route path="/" element={ <Auth element={<Home />} /> }/>
+                <Route path="/" 
+                // element={ <Auth element={<Home />} /> }
+                element={<Home />}
+                />
                 <Route path="/login" element={ <NoAuth element={<Cred {...{ signupPanel, setsignupPanel }} />} /> }/>
             </Routes>
         </div>

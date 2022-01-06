@@ -1,0 +1,136 @@
+.kanji-prompt{
+    font-size: 12em;
+    font-family: serif;
+    color: var(--prim);
+}
+
+.kanji-symbol{
+    /* color:var(--prim); */
+    margin-top:0.25em;
+    font-size: 2em;
+    color:var(--prim);
+    font-family: serif;
+}
+
+.kanji-radical-icons{
+    padding:1em;
+}
+
+.kanji-yomiContainer{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+    width:100%;
+}
+
+
+.kanji-yomiContainer>*{
+    padding:0.5em;
+    border-radius: 0.5em;
+    box-shadow: -0.2em -0.2em 0.2em var(--sec),
+                0.2em 0.2em 0.2em 0.2em var(--surface-var);
+}
+
+.kanji-meaning{
+    border-radius: 0.5em;
+    box-shadow: 0.2em 0.2em 0.5em var(--surface-var),
+    -0.2em -0.2em 0.5em var(--sec);
+    margin-top:1em;
+    width:fit-content;
+    padding:0.5em;
+    margin-bottom:0.5em;
+}
+
+.kanji-readingMn,.kanji-meaningMn{
+    border-radius: 0.5em;
+    margin-top:0.7em;
+    padding:0.5em;
+    background: var(--sec);
+    /* box-shadow: 0.2em 0.2em 0.5em var(--surface-var);
+    box-shadow: 0em 0em 0.2em 0.2em var(--surface-var); */
+    box-shadow:0.2em 0.2em 0.2em 0.2em var(--surface-var);
+}
+
+
+
+/* radical */
+
+.radical-prompt{
+    font-size: 12em;
+    font-family: serif;
+    padding:0em;
+    color: var(--prim);
+}
+
+.radical-symbol{
+    font-size: 2em;
+    font-family: serif;
+    color: var(--prim);
+}
+
+.radical-name{
+    box-shadow: -0.2em -0.2em 0.5em var(--sec),
+                0.2em 0.2em 0.2em 0.2em var(--surface-var);
+    border-radius: 0.25em;
+    margin-top: 0.5em;
+    font-size: 1.5em;
+    padding:0.25em;
+}
+
+.radical-meaning{
+    padding:0.5em;
+}
+
+/* vocab */
+
+.vocab-prompt{
+    font-size: 8em;
+    font-family: serif;
+    color:var(--prim);
+}
+
+.vocab-button-container{
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: row;
+    justify-content: space-around;
+    width:100%;
+    /* padding-top:2em; */
+    padding-bottom:1em;
+}
+
+.vocab-button-container>*{
+    margin: 0.25em;
+    background: var(--sec);
+    border-radius: 0.25em;
+    padding:0.25em;
+    /* color: var(--sec); */
+    color:var(--on-surface);
+    display : flex;
+    align-items: center;
+}
+
+.vocab-symbol{
+    font-size: 2em;
+    font-family: serif;
+    color: var(--prim);
+}
+
+.vocab-reading{
+    font-size: 1.5em;
+}
+
+.vocabSpeechType{
+    margin:0.5em;
+    background: var(--prim);
+    color: var(--sec);
+    border-radius: 0.25em;
+    padding:0.5em;
+    border:none;
+}
+
+.vocab-meaning{
+    padding:1em;
+    height:100%;
+}
